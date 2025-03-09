@@ -21,6 +21,7 @@ def prompt_user(
     repo: Repo,
 ):
     """Given a set of commit suggestions, show them to the user. Let them edit, reject, or execute them."""
+    console.print("[blue bold]Modified Code:[/]")
     # Show the user each commit suggestion
     for commit_suggestion in commit_suggestions.commit_suggestions:
         # Show all the code changes associated with the suggested commit
@@ -70,6 +71,7 @@ def prompt_user(
                 )
             console.print("[blue]Executing git commit...[/]")
             subprocess.run(["git", "commit", "-m", f"{commit_suggestion.message}"])
+            console.print("[blue]Finished making git commit!")
 
 
 def main():
