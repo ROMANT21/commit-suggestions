@@ -1,14 +1,12 @@
 from openai import OpenAI
 from rich.console import Console
-from rich.panel import Panel
 from rich.table import Table
-from rich.progress import Progress
-from rich.markdown import Markdown
 from rich.prompt import Confirm
 from commit_suggestions.models import CommitSuggestions, Hunks, ModifiedCodeSnippets
 from commit_suggestions.utils import (
     parse_git_diff_into_hunks,
     get_snippets_from_hunks,
+    color_code,
 )
 import subprocess
 from git import Repo
@@ -33,7 +31,7 @@ def prompt_user(
 
             table = Table()
             table.add_column(modified_code.filename)
-            table.add_row(modified_code.modified_code)
+            table.add_row(color_code(modified_code.modified_code))
             console.print(table)
 
         # Show the suggested commit message

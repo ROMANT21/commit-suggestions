@@ -4,6 +4,26 @@ from commit_suggestions.models import (
     ModifiedCodeSnippets,
     ModifiedCodeSnippet,
 )
+from typing import List
+
+
+def color_code(uncolored_code_txt: str) -> str:
+    """Given a string of code, color added lines (+) green, removed lines (-) red, and unmodified lines white."""
+    # Split the text into lines
+    uncolored_code_lines = uncolored_code_txt.splitlines()
+
+    colored_code_lines: List[str] = []
+    for uncolored_code_line in uncolored_code_lines:
+        if uncolored_code_line.startswith("+"):
+            colored_code_line = "[green]" + uncolored_code_line + "[/]"
+        elif uncolored_code_line.startswith("-"):
+            colored_code_line = "[red]" + uncolored_code_line + "[/]"
+        else:
+            # Keep the text white
+            colored_code_line = uncolored_code_line
+        colored_code_lines.append(colored_code_line)
+
+    return "\n".join(colored_code_lines)
 
 
 def parse_git_diff_into_hunks(diff_txt: str) -> Hunks:
