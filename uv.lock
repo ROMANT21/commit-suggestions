@@ -52,12 +52,20 @@ dependencies = [
     { name = "rich" },
 ]
 
+[package.dev-dependencies]
+dev = [
+    { name = "pytest" },
+]
+
 [package.metadata]
 requires-dist = [
     { name = "gitpython", specifier = ">=3.1.44" },
     { name = "openai", specifier = ">=1.65.4" },
     { name = "rich", specifier = ">=13.9.4" },
 ]
+
+[package.metadata.requires-dev]
+dev = [{ name = "pytest", specifier = ">=8.3.5" }]
 
 [[package]]
 name = "distro"
