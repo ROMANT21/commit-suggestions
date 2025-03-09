@@ -115,7 +115,7 @@ def main():
     """
 
     # Ask chat gpt for commit suggestions
-    console.rule("[bold blue]SUGGESTING COMMITS[/]")
+    console.rule("[bold blue]CREATING COMMITS[/]")
     console.print("[yellow]Creating commit suggestions...[/]")
     completion = client.beta.chat.completions.parse(
         model="gpt-4o",
@@ -137,8 +137,9 @@ def main():
     if commit_suggestions is None:
         console.print("There was an error generating prompts! Exiting Program!")
         return
-    console.print("Done generating Prompts!")
+    console.print("[yellow]Done creating commit suggestions![/]")
 
+    console.rule("[bold blue]SUGGESTING COMMITS![/]")
     prompt_user(commit_suggestions, modified_code_snippets, hunks, current_repo)
     console.print("Exiting Program! You're so good at commits ;)")
 
